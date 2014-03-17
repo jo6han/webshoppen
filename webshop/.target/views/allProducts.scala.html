@@ -1,0 +1,11 @@
+@(prodList: List[model.Product])
+
+@main("All products") {
+<h1>Listing all products (Total amount @prodList.size()):</h1>
+
+	<ul>
+		@for(product <- prodList){
+			<a href="/getOneProduct/@product.getProductId"><li>@product.getName()</a></li>
+		}
+	</ul>
+}

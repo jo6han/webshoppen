@@ -1,9 +1,0 @@
-@(prodList: List[model.Product])
-
-Listing all products (Total amont @prodList.size()):
-
-<ul>
-		@for(product <- prodList){
-			<a href="/getOneProduct/@product.getProductId"><li>@product.getName()</a></li>
-		}
-</ul>
