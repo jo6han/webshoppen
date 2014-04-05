@@ -1,0 +1,39 @@
+@(cat: List[model.Category])
+
+@main("Product") {
+<h1>New Product</h1>
+	
+	<form action="@routes.ProductController.createNewProduct()" method="post" role="form">
+  	<div class="form-group">
+    	<label for="product-name">Product name</label>
+    	<input type="text" class="form-control" id="product-name" name="name" placeholder="Name of the product">
+    	<label for="product-desc">Product description</label>
+    	<input type="text" class="form-control" id="product-desc" name="desc" placeholder="Description of the product">
+    	<label for="product-cost">Product Cost</label>
+    	<input type="text" class="form-control" id="product-cost" name="cost" placeholder="Cost">
+    	<label for="product-rrp">Product RRP</label>
+    	<input type="text" class="form-control" id="product-rrp" name="rrp" placeholder="Recommended retail price">
+    	<label for="product-quantity">Product Quantity</label>
+    	<input type="text" class="form-control" id="product-quantity" name="quantity" placeholder="Amount">
+  	</div>
+  	<div class="form-group">
+    	<label for="category-name">Categories</label>
+   		<br>
+   		
+   		@for(categories <- cat) {
+   		<input type="checkbox" name="category-id" value="@categories.id">@categories.name<br>
+   		}
+		<br><br>
+
+
+    	
+  	</div>
+  	<button type="submit" class="btn btn-default">Submit</button>
+	</form>
+	
+	
+	<br>
+	<button onclick="window.history.back()">Go Back</button>
+	<br><br>
+	
+}

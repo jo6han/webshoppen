@@ -1,0 +1,27 @@
+@(cat: model.Category)
+
+
+
+@main("Category") {
+<h1>Category Details:</h1>
+
+	Category name: @cat.getName() <br>
+	Category Id: @cat.getId() <br>
+	Category Staff id: @cat.getStaffId() <br>
+	<br>
+	
+	@if(cat.prodList.isEmpty()){
+		No products in category
+		<br>
+	}else{
+		Products in category (Click for details): <br>
+		@for(prod <- cat.prodList){
+			<a href="/getOneProduct/@prod.getId()">@prod.getName()</a>
+			<br>
+		}
+	}
+	
+	<br>
+	<button onclick="window.history.back()">Go Back</button>
+	
+}

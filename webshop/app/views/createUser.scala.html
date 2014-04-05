@@ -1,0 +1,64 @@
+@(message: String)
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="UTF-8" />
+     
+    <title>
+        @message
+    </title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href=@routes.Assets.at("login.css") />
+</head>
+<body>
+
+@if(flash.get("username-empty")){
+	<div class="alert alert-warning">Username Required</div>
+}
+@if(flash.get("password-empty")){
+	<div class="alert alert-warning">Password Required</div>
+}
+@if(flash.get("pass-no-match")){
+	<div class="alert alert-warning">Passwords doesn't match.</div>
+}
+@if(flash.get("User-exist")){
+	<div class="alert alert-warning">User already exist.</div>
+}
+
+<form action="@routes.LoginController.creatingUser" method="post" role="form">
+  <h1>New User</h1>
+  <div>
+  <p>
+    <label for="name">Full Name</label>
+    <input type="text" name="name" id="name">
+  </p>
+  <p>
+    <label for="email">Email</label>
+    <input type="text" name="email" id="email">
+  </p>
+  <p>
+    <label for="address">Address</label>
+    <input type="text" name="address" id="address">
+  </p>
+  <p>
+    <label for="phone">Telephone</label>
+    <input type="text" name="phone" id="phone">
+  </p>
+  <p>
+    <label for="password">PASSWORD</label>
+    <input type="text" name="password" id="password">
+  </p>
+  <p>
+    <label for="password">CONFIRM PASSWORD</label>
+    <input type="text" name="confirm-password" id="confirmpassword">
+  </p>
+  </div>
+  <p class="p-container">
+    <input type="submit" name="go" id="go" value="LET THE MAGIC HAPPEN">
+  </p>
+</form>
+
+</body>
+</html>

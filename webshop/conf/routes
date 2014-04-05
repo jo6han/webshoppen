@@ -4,13 +4,33 @@
 
 # Home page
 GET     /                           controllers.Application.index()
-#sGET     /getAllCategories           controllers.ProductController.index()
-GET     /createFakeObjects          controllers.ProductController.createObjects()
+GET		/login						controllers.LoginController.logins()
+GET		/logout						controllers.LoginController.loginouts()
+POST    /login                  	controllers.LoginController.loginForm()
+GET		/createUser					controllers.LoginController.createUser()
+POST	/creatingUser				controllers.LoginController.creatingUser()
+
+#Category Section
+POST 	/createNewCategory			controllers.CategoryController.createNewCategory()
+GET		/creatingCategory			controllers.CategoryController.creatingCategory()
+GET     /getAllCategories           controllers.CategoryController.getAllCategories()
+GET     /getOneCategory/:id         controllers.CategoryController.getOneCategory(id: Int)
+
+#Product Section
+POST 	/createNewProduct			controllers.ProductController.createNewProduct()
+GET		/creatingProduct			controllers.ProductController.creatingProduct()
 GET     /getOneProduct/:id         	controllers.ProductController.getOneProduct(id : Int)
 GET     /getAllProducts            	controllers.ProductController.getAllProducts()
 
+#Cart magic
+GET		/getAllProductsFromCart		controllers.CartController.getAllProductsFromCart()
+POST	/addToCart					controllers.CartController.addingToCart()
+GET		/updateCart					controllers.CartController.updateCart()
+POST	/updateCart					controllers.CartController.updatingCart()
 
-
+#CheckOut Section
+GET		/getAllOrders				controllers.OrderController.getAllYourOrders()
+POST	/addAlltoOrders				controllers.OrderController.addingToOrderFromCart()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

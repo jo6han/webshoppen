@@ -1,2 +1,24 @@
-@* ShoppingCart Template File *@
-@(param: Any)
+@(prodsInCartList: List[model.ShoppingCart])
+
+
+@main("Products in your cart.") {
+  <h1>Listing all your products (Total amount: @prodsInCartList.size()):</h1>
+
+	<ul>
+		@for(prod <- prodsInCartList){
+			<a href="/getOneProduct/@prod.id"><li>@prod.name</a> and the quantity: @prod.quantity</li>
+		}
+	</ul>
+	
+	<br><br><br>
+	
+	@if(prodsInCartList.size() > 0){
+		<form action="@routes.OrderController.addingToOrderFromCart()" method="post" role="form">	
+		<button type="submit" class="btn btn-default">ORDER IT</button>
+		</form>
+	}
+	<br><br><br>
+	
+	
+	<button onclick="window.location.href='/'">Menu</button>
+}

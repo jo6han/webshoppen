@@ -3,6 +3,29 @@
 @main("Product") {
 <h1>Product Details:</h1>
 
+	<form action="@routes.CartController.addingToCart()" method="post" class="form-inline">
+  	Quantity: <input type="number" class="form-number" name="quantity">
+	<input type="hidden" name="prod-id" value="@prod.id">
+  	
+  	<input type="submit" value="Add to cart" class="btn btn-default">
+  	<br><br><br>
+	</form>
+
 	Product name: @prod.getName() <br>
-	Product cost: @prod.getCost()
+	Product Description: @prod.getDescription() <br>
+	Product cost: @prod.getCost() <br>
+	Product RRP: @prod.getRRP() <br>
+	Product Quantity: @prod.getQuantity() <br>
+	
+	Category/Categories (Click for category detail):<br>
+	@for(category <- prod.catList){
+		
+		<a href="/getOneCategory/@category.getId()">@category.getName</a>
+		<br>
+	}
+	
+	<br>
+	<button onclick="window.history.back()">Go Back</button>
+	<br><br><br>
+	
 }

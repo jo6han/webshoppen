@@ -1,0 +1,26 @@
+@(prodsInCartList: List[model.ShoppingCart])
+
+@if(flash.get("too-much")){
+	<div class="alert alert-warning">Amount extending what's in stock.</div>
+}
+
+@main("Update one Product in cart.") {
+  <h1>UPDATE CART (Total amount: @prodsInCartList.size()):</h1>
+
+	<ul>	
+		<form action="@routes.CartController.updateCart()" method="post" class="form-inline">
+		<select name="cartProd-id">
+		@for(prod <- prodsInCartList) {
+   		<option name="cartProd-id" value="@prod.id">@prod.name<br>
+   		}
+   		</select>
+   		New Quantity: <input type="number" class="form-number" name="quantity">
+   		
+   		<input type="submit" value="Submit" class="btn btn-default">
+   		
+   		</form>
+	</ul>
+	
+	
+	<button onclick="window.location.href='/'">Menu</button>
+}

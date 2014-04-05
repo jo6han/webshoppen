@@ -1,0 +1,49 @@
+@(message: String)
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="UTF-8" />
+     
+    <title>
+        @message
+    </title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href=@routes.Assets.at("login.css") />
+</head>
+<body>
+
+@if(flash.get("username-empty")){
+	<div class="alert alert-warning">Username Required</div>
+}
+@if(flash.get("password-empty")){
+	<div class="alert alert-warning">Password Required</div>
+}
+@if(flash.get("login-failed")){
+	<div class="alert alert-warning">Login failed. Username/Password is not given.</div>
+}
+@if(flash.get("User-nonexisting")){
+	<div class="alert alert-warning">Login failed. User doesnt exist OR Username/Password wrong.</div>
+}
+
+<form action="@routes.LoginController.loginForm" method="post" role="form">
+  <h1>Copy paste Log in</h1>
+  <div class="inset">
+  <p>
+    <label for="email">EMAIL ADDRESS</label>
+    <input type="text" name="email" id="email">
+  </p>
+  <p>
+    <label for="password">PASSWORD</label>
+    <input type="password" name="password" id="password">
+  </p>
+  </div>
+  <p class="p-container">
+    <a href="/createUser"><span>Become a copy-paste-master.</span></a>
+    <input type="submit" name="go" id="go" value="Log in">
+  </p>
+</form>
+
+</body>
+</html>

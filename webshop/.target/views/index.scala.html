@@ -1,11 +1,24 @@
 @(message: String)
 
+@if(flash.get("no-user-found")){
+	<div class="alert alert-warning">You are not logged in. Please Log in.</div>
+}
+
 @main(message) {
-<h1>Menu</h1>
+	
+	
+	<div class="content">
+	<h3>@if(session().containsKey("username")){<span>Welcome @session().get("username")!</span>}</h3>
+	<img alt="" src="/assets/images/copy-paste-it.png">
+	<!-- <h1>Menu</h1>
 
 	<ul>
 		<li><a href="/getAllProducts">Products</a></li>
-		<li><!--  <a href="/getAllCategories">--> Categories</li>
-		<li><!--  <a href="/getAllCategories">--> Random rad 3</li>
+		<li><a href="/creatingProduct">Create a Product</a></li>
+		<li><a href="/getAllCategories">Categories</a></li>
+		<li><a href="/creatingCategory">Create a Category</a></li>
 	</ul>
+	
+	 -->
+	</div>
 }

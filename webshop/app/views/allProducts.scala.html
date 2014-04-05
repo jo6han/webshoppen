@@ -1,11 +1,18 @@
 @(prodList: List[model.Product])
 
+@if(flash.get("already-exists")){
+	<div class="alert alert-warning">The product might already exist. Please check all the products, and create again.</div>
+}
+
 @main("All products") {
 <h1>Listing all products (Total amount @prodList.size()):</h1>
 
 	<ul>
 		@for(product <- prodList){
-			<a href="/getOneProduct/@product.getProductId"><li>@product.getName()</a></li>
+			<a href="/getOneProduct/@product.getId()"><li>@product.getName()</a></li>
 		}
 	</ul>
+	
+	<button onclick="window.location.href='/'">Menu</button>
+	
 }
