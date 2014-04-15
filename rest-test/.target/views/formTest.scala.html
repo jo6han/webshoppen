@@ -1,0 +1,33 @@
+@(prodList: List[models.Product])
+
+@main("Product") {
+	
+	@if(flash.containsKey("errormsg")){
+	<div class="alert alert-warning">@flash.get("errormsg")</div>
+	}
+	
+	<h1>Products</h1>
+	
+	<ul>
+		@for(product <- prodList){
+			<li>@product.name</li>
+		}
+	</ul>
+	
+<h1>New Product</h1>
+	
+	<form action="@routes.FormController.createNewProduct()" method="post" role="form">
+  	<div class="form-group">
+    	<label for="product-name">Product name</label>
+    	<input type="text" class="form-control" id="product-name" name="name" placeholder="Name of the product">
+    	<label for="product-desc">Product description</label>
+    	<input type="text" class="form-control" id="product-desc" name="desc" placeholder="Description of the product">
+    	<label for="product-cost">Product Cost</label>
+    	<input type="text" class="form-control" id="product-cost" name="cost" placeholder="Cost">
+  	</div>
+  	
+  	
+  	<button type="submit" class="btn btn-default">Submit</button>
+	</form>
+	
+}

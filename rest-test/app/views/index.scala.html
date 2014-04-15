@@ -1,0 +1,89 @@
+@(message: String)
+ 
+@main(message) {
+ 
+	
+    <ul id="products"></ul>
+    
+    <hr>
+    
+    <button id="create-new-product">Create new</button>
+    
+    <script>
+    	function loadListOfproducts(){
+			$('#products').empty();
+			$.get('/products', function(products){
+				$.each(products, function(arrayIndex, product){
+					$('<li>')
+					.append(
+						$('<button>')
+						.text('GET')
+						.click(function(){
+							location.href = "/products/" + product.id;
+						})
+					)
+					.append('&emsp;')
+					.append(
+						$('<button>')
+						.text('Delete')
+						.click(function(){
+							$.ajax({
+								url: '/products/' + product.id,
+								type: 'DELETE'
+							})
+							.always(function(){
+								loadListOfproducts();
+							});
+						})
+					)
+					.append('&emsp;')
+					.append(
+						$('<button>')
+						.text('Update')
+						.click(function(){
+							$.ajax({
+								url: '/products/' + product.id,
+								type: 'PUT',
+								data: {
+									name: prompt("product name please?", product.name),
+									desc: prompt("product desc please?", product.desc),
+									cost: prompt("product cost please?", product.cost)
+								}
+							})
+							.always(loadListOfproducts);
+						})
+					)
+					.append('&emsp;')
+					.append('&emsp;')
+					.append(product.name)
+					.append(', ')
+					.append(product.desc)
+					.append(', ')
+					.append(product.cost)
+					.append(' (')
+					.append(product.id)
+					.append(')')
+					.append('&emsp;')
+					
+					.appendTo('#products');
+				});
+			});
+    	}
+ 
+    	$(loadListOfproducts);
+    	
+		$('#create-new-product').click(function(){
+			$.ajax({
+				url: '/products',
+				type: 'PUT',
+				data: {
+					name: prompt("product name please?"),
+					desc: prompt("product desc please?"),
+					cost: prompt("product cost please?")
+				}
+			})
+			.always(loadListOfproducts);
+		});
+    </script>
+ 
+}
